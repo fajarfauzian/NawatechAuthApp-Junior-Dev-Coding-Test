@@ -1,4 +1,4 @@
-# Nawatech - User Registration & Product Management App (.NET Core)
+# NawatechAuthApp - User Registration & Product Management App (.NET Core)
 
 ## 📝 Deskripsi
 Proyek ini merupakan implementasi dari technical test **Nawatech Junior Fullstack Developer**, dengan fitur utama **User Registration**, **Login**, dan **Manajemen Produk & Kategori** menggunakan **ASP.NET Core (.NET 6/7/8)** dan **Entity Framework Core**. Fitur opsional konfirmasi email juga tersedia.

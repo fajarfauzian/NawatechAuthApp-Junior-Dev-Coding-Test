@@ -1,0 +1,59 @@
+@page "{id:int}"
+@model NawatechAuthApp.Pages.Categories.DeleteModel
+@{
+    ViewData["Title"] = "Delete Category";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">@ViewData["Title"]</h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-danger border-0 rounded-3 shadow-sm">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-exclamation-triangle-fill fs-4 me-2"></i>
+                            <h5 class="mb-0">Are you sure you want to delete this category?</h5>
+                        </div>
+                    </div>
+
+                    <div class="bg-light p-4 rounded-3 mb-4">
+                        <h5 class="text-danger mb-3">@Model.Category.Name</h5>
+                        <div class="row g-3">
+                            <div class="col-sm-12 col-md-6">
+                                <div class="p-3 bg-white rounded-3 shadow-sm">
+                                    <small class="text-muted d-block">Name</small>
+                                    <span class="fw-medium">@Model.Category.Name</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="p-3 bg-white rounded-3 shadow-sm">
+                                    <small class="text-muted d-block">Created At</small>
+                                    <span class="fw-medium">@Model.Category.CreatedAt.ToString("yyyy-MM-dd HH:mm")</span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="p-3 bg-white rounded-3 shadow-sm">
+                                    <small class="text-muted d-block">Description</small>
+                                    <span class="fw-medium">@Model.Category.Description</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="post" class="d-flex gap-2 justify-content-end">
+                        <input type="hidden" asp-for="Category.Id" />
+                        <a asp-page="./Index" class="btn btn-light px-4">
+                            <i class="bi bi-arrow-left me-2"></i>Cancel
+                        </a>
+                        <button type="submit" class="btn btn-danger px-4">
+                            <i class="bi bi-trash me-2"></i>Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

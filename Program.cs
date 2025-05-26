@@ -17,14 +17,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Konfigurasi Identity
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => {
-    options.SignIn.RequireConfirmedAccount = false; // Ubah ke false
+    options.SignIn.RequireConfirmedAccount = false;
     options.Password.RequireDigit = true;
     options.Password.RequireLowercase = true;
     options.Password.RequireUppercase = true;
     options.Password.RequireNonAlphanumeric = true;
     options.Password.RequiredLength = 8;
 })
-.AddEntityFrameworkStores<ApplicationDbContext>();
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddClaimsPrincipalFactory<CustomUserClaimsPrincipalFactory>();
 
 // Configure email sender (for development, we'll use a mock service)
 builder.Services.AddTransient<IEmailSender, EmailSender>();

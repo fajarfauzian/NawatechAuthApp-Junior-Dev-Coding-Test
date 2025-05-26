@@ -53,5 +53,5 @@ Pastikan kamu sudah install:
 1. **Clone Repository**
 
    ```bash
-   git clone https://github.com/username/nawatech-auth-app.git
+   git clone https://github.com/fajarfauzian/NawatechAuthApp-Junior-Dev-Coding-Test.git
    cd nawatech-auth-app

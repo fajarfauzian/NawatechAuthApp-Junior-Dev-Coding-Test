@@ -3,11 +3,6 @@
 ## 📝 Deskripsi
 Proyek ini merupakan implementasi dari technical test **Nawatech Junior Fullstack Developer**, dengan fitur utama **User Registration**, **Login**, dan **Manajemen Produk & Kategori** menggunakan **ASP.NET Core (.NET 6/7/8)** dan **Entity Framework Core**. Fitur opsional konfirmasi email juga tersedia.
 
-## 📸 Screenshots
-
-### Halaman Utama
-https://raw.githubusercontent.com/fajarfauzian/NawatechAuthApp-Junior-Dev-Coding-Test/main/wwwroot/image/home.png
-
 ---
 
 ## 🚀 Fitur Utama

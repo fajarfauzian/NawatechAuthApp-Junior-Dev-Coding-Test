@@ -4,51 +4,93 @@
     ViewData["Title"] = "Create Product";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="container pt-2">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <h2 class="card-title text-center mb-4">@ViewData["Title"]</h2>
+                    
+                    <form asp-page="Create" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label asp-for="Product.Name" class="form-label fw-semibold"></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-box-seam"></i></span>
+                                        <input asp-for="Product.Name" class="form-control" placeholder="Enter product name" />
+                                    </div>
+                                    <span asp-validation-for="Product.Name" class="text-danger small"></span>
+                                </div>
 
-<div class="row">
-    <div class="col-md-6">
-        <form method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="mb-3">
-                <label asp-for="Product.Name" class="form-label"></label>
-                <input asp-for="Product.Name" class="form-control" />
-                <span asp-validation-for="Product.Name" class="text-danger"></span>
+                                <div class="mb-4">
+                                    <label asp-for="Product.Price" class="form-label fw-semibold"></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
+                                        <input asp-for="Product.Price" class="form-control" type="number" step="0.01" placeholder="Enter price" />
+                                    </div>
+                                    <span asp-validation-for="Product.Price" class="text-danger small"></span>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label asp-for="Product.Stock" class="form-label fw-semibold"></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-boxes"></i></span>
+                                        <input asp-for="Product.Stock" class="form-control" type="number" placeholder="Enter stock quantity" />
+                                    </div>
+                                    <span asp-validation-for="Product.Stock" class="text-danger small"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label asp-for="Product.Description" class="form-label fw-semibold"></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-text-paragraph"></i></span>
+                                        <textarea asp-for="Product.Description" class="form-control" rows="4" placeholder="Enter product description"></textarea>
+                                    </div>
+                                    <span asp-validation-for="Product.Description" class="text-danger small"></span>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label asp-for="Product.CategoryId" class="form-label fw-semibold">Category</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-tag"></i></span>
+                                        <select asp-for="Product.CategoryId" class="form-select" asp-items="Model.Categories">
+                                            <option value="">-- Select Category --</option>
+                                        </select>
+                                    </div>
+                                    <span asp-validation-for="Product.CategoryId" class="text-danger small"></span>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label asp-for="ImageFile" class="form-label fw-semibold">Product Image</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-image"></i></span>
+                                        <input asp-for="ImageFile" type="file" class="form-control" accept="image/*" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                            <a asp-page="./Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left me-1"></i> Back
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-plus-circle me-1"></i> Create Product
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="mb-3">
-                <label asp-for="Product.Description" class="form-label"></label>
-                <textarea asp-for="Product.Description" class="form-control" rows="3"></textarea>
-                <span asp-validation-for="Product.Description" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Product.Price" class="form-label"></label>
-                <input asp-for="Product.Price" class="form-control" type="number" step="0.01" />
-                <span asp-validation-for="Product.Price" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Product.Stock" class="form-label"></label>
-                <input asp-for="Product.Stock" class="form-control" type="number" />
-                <span asp-validation-for="Product.Stock" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Product.CategoryId" class="form-label">Category</label>
-                <select asp-for="Product.CategoryId" class="form-select" asp-items="Model.Categories">
-                    <option value="">-- Select Category --</option>
-                </select>
-                <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="ImageFile" class="form-label">Product Image</label>
-                <input asp-for="ImageFile" type="file" class="form-control" accept="image/*" />
-            </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Create</button>
-                <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 }

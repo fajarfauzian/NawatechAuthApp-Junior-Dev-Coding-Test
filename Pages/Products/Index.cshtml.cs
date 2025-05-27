@@ -20,6 +20,7 @@ namespace NawatechAuthApp.Pages.Products
         }
 
         public IList<Product> Products { get; set; } = new List<Product>();
+        public IList<ProductCategory> Categories { get; set; } = new List<ProductCategory>();
 
         [TempData]
         public string? StatusMessage { get; set; }
@@ -28,6 +29,9 @@ namespace NawatechAuthApp.Pages.Products
         {
             Products = await _context.Products
                 .Include(p => p.Category)
+                .ToListAsync();
+                
+            Categories = await _context.ProductCategories
                 .ToListAsync();
         }
     }

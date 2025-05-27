@@ -4,51 +4,104 @@
     ViewData["Title"] = "Product Details";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="container py-4">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a asp-page="./Index" class="text-decoration-none">Products</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.Product.Name</li>
+        </ol>
+    </nav>
 
-<div>
-    <div class="row mb-4">
-        <div class="col-md-6">
-            <dl class="row">
-                <dt class="col-sm-4">Name</dt>
-                <dd class="col-sm-8">@Model.Product.Name</dd>
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+            <div class="row g-4">
+                <!-- Product Image -->
+                <div class="col-lg-6">
+                    <div class="rounded d-flex align-items-center justify-content-center" style="min-height: 400px;">
+                        @if (!string.IsNullOrEmpty(Model.Product.ImageUrl))
+                        {
+                            <img src="@Model.Product.ImageUrl" alt="@Model.Product.Name" 
+                                 class="img-fluid rounded" style="max-height: 380px; object-fit: contain;" />
+                        }
+                        else
+                        {
+                            <div class="text-muted text-center">
+                                <i class="bi bi-image fs-1 mb-2 opacity-50"></i>
+                                <div>No image available</div>
+                            </div>
+                        }
+                    </div>
+                </div>
                 
-                <dt class="col-sm-4">Description</dt>
-                <dd class="col-sm-8">@(Model.Product.Description ?? "N/A")</dd>
-                
-                <dt class="col-sm-4">Price</dt>
-                <dd class="col-sm-8">@Model.Product.Price.ToString("C")</dd>
-                
-                <dt class="col-sm-4">Stock</dt>
-                <dd class="col-sm-8">@Model.Product.Stock</dd>
-                
-                <dt class="col-sm-4">Category</dt>
-                <dd class="col-sm-8">@(Model.Product.Category?.Name ?? "N/A")</dd>
-                
-                <dt class="col-sm-4">Created At</dt>
-                <dd class="col-sm-8">@Model.Product.CreatedAt.ToString("g")</dd>
-                
-                @if (Model.Product.UpdatedAt.HasValue)
-                {
-                    <dt class="col-sm-4">Last Updated</dt>
-                    <dd class="col-sm-8">@Model.Product.UpdatedAt.Value.ToString("g")</dd>
-                }
-            </dl>
+                <!-- Product Details -->
+                <div class="col-lg-6">
+                    <div class="h-100 d-flex flex-column">
+                        <h1 class="h3 fw-bold mb-3">@Model.Product.Name</h1>
+                        
+                        <!-- Price and Stock -->
+                        <div class="mb-4">
+                            <h2 class="h4 text-primary fw-bold mb-2">@Model.Product.Price.ToString("C")</h2>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="badge bg-@(Model.Product.Stock > 0 ? "success" : "danger") px-3 py-2">
+                                    @(Model.Product.Stock > 0 ? "In Stock" : "Out of Stock")
+                                </span>
+                                <span class="text-muted">(@Model.Product.Stock units)</span>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        @if (!string.IsNullOrEmpty(Model.Product.Description))
+                        {
+                            <div class="mb-4">
+                                <h3 class="h6 text-uppercase text-muted fw-bold mb-2">Description</h3>
+                                <p class="text-muted lh-base">@Model.Product.Description</p>
+                            </div>
+                        }
+
+                        <!-- Product Info Grid -->
+                        <div class="mb-4">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <div class="p-3 bg-light rounded">
+                                        <small class="text-uppercase text-muted fw-bold d-block mb-1">Category</small>
+                                        <div class="fw-semibold">@(Model.Product.Category?.Name ?? "N/A")</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="p-3 bg-light rounded">
+                                        <small class="text-uppercase text-muted fw-bold d-block mb-1">Created</small>
+                                        <div class="fw-semibold">@Model.Product.CreatedAt.ToString("MMM dd, yyyy")</div>
+                                    </div>
+                                </div>
+                                @if (Model.Product.UpdatedAt.HasValue)
+                                {
+                                    <div class="col-6">
+                                        <div class="p-3 bg-light rounded">
+                                            <small class="text-uppercase text-muted fw-bold d-block mb-1">Updated</small>
+                                            <div class="fw-semibold">@Model.Product.UpdatedAt.Value.ToString("MMM dd, yyyy")</div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="mt-auto">
+                            <div class="d-flex gap-2">
+                                <a asp-page="./Edit" asp-route-id="@Model.Product.Id" class="btn btn-primary px-4">
+                                    <i class="bi bi-pencil-square me-2"></i>Edit
+                                </a>
+                                <a asp-page="./Index" class="btn btn-outline-secondary px-4">
+                                    <i class="bi bi-arrow-left me-2"></i>Back to List
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
-            @if (!string.IsNullOrEmpty(Model.Product.ImageUrl))
-            {
-                <img src="@Model.Product.ImageUrl" alt="@Model.Product.Name" class="img-fluid" style="max-height: 300px;" />
-            }
-            else
-            {
-                <div class="text-muted">No image available</div>
-            }
-        </div>
-    </div>
-    
-    <div>
-        <a asp-page="./Edit" asp-route-id="@Model.Product.Id" class="btn btn-primary">Edit</a>
-        <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
     </div>
 </div>

@@ -1,51 +1,51 @@
 # NawatechAuthApp - User Registration & Product Management App (.NET Core)
 
-## 📝 Description
-This project is an implementation of **Nawatech Junior Fullstack Developer** technical test, featuring **User Registration**, **Login**, and **Product & Category Management** using **ASP.NET Core (.NET 6/7/8)** and **Entity Framework Core**. Optional email confirmation feature is also available.
+## 📝 Deskripsi
+Proyek ini merupakan implementasi dari technical test **Nawatech Junior Fullstack Developer**, dengan fitur utama **User Registration**, **Login**, dan **Manajemen Produk & Kategori** menggunakan **ASP.NET Core (.NET 6/7/8)** dan **Entity Framework Core**. Fitur opsional konfirmasi email juga tersedia.
 
 ---
 
-## 🚀 Main Features
+## 🚀 Fitur Utama
 1. **User Registration**  
-   Users can register an account with email and password.  
-   *(Optional) Email confirmation for account verification.*
+   User dapat melakukan registrasi akun dengan email dan password.  
+   *(Opsional) Email konfirmasi untuk verifikasi akun.*
 
 2. **User Login**  
-   Users can login using registered email and password.
+   User dapat masuk/login menggunakan email dan password yang sudah terdaftar.
 
-3. **User Profile Edit**  
-   Users can edit their profile including changing profile photo.
+3. **Edit Profil User**  
+   User dapat mengedit profilnya termasuk mengubah foto profil.
 
-4. **Product Category Management**  
-   Users can create, update, and soft delete product category data.
+4. **Manajemen Kategori Produk**  
+   User dapat membuat, mengubah, dan melakukan soft delete pada data kategori produk.
 
-5. **Product Management**  
-   Users can create, update, and soft delete product data.
+5. **Manajemen Produk**  
+   User dapat membuat, mengubah, dan melakukan soft delete pada data produk.
 
 ---
 
-## 🛠 Technologies Used
+## 🛠 Teknologi yang Digunakan
 - ASP.NET Core Web App (Razor Pages / MVC)
 - ASP.NET Core Identity
 - Entity Framework Core
 - MySQL
 - C#
-- .NET 6 / .NET 7 / .NET 8 SDK
-- (Optional) SMTP / MailKit for Email Confirmation
+- .NET 8 SDK
+- (Opsional) SMTP / MailKit untuk Email Confirmation
 
 ---
 
-## ⚙️ Setup & Running Project
+## ⚙️ Cara Setup & Menjalankan Project
 
-### ✅ Prerequisites
-Make sure you have installed:
+### ✅ Prasyarat
+Pastikan kamu sudah install:
 - [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 - [MySQL Server](https://dev.mysql.com/downloads/mysql/)
-- [MySQL Workbench](https://dev.mysql.com/downloads/workbench/) (optional, for GUI)
+- [MySQL Workbench](https://dev.mysql.com/downloads/workbench/) (opsional, untuk GUI)
 
 ---
 
-### 🔧 Setup Steps
+### 🔧 Langkah-langkah Setup
 
 #### 1. **Clone Repository**
 ```bash
@@ -53,18 +53,18 @@ git clone https://github.com/fajarfauzian/NawatechAuthApp-Junior-Dev-Coding-Test
 cd NawatechAuthApp-Junior-Dev-Coding-Test
 ```
 
-#### 2. **Setup MySQL Database**
-Create new database in MySQL:
+#### 2. **Setup Database MySQL**
+Buat database baru di MySQL:
 ```sql
 CREATE DATABASE nawatech_auth_db;
 ```
 
-#### 3. **Configure Connection String**
-Open `appsettings.json` file and adjust MySQL connection string:
+#### 3. **Konfigurasi Connection String**
+Buka file `appsettings.json` dan sesuaikan connection string MySQL:
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Database=nawatech_auth_db;Uid=root;Pwd=your_password;"
+    "DefaultConnection": "Server=localhost;Database=nawatech_auth_db;Uid=root;Pwd=password-kamu;"
   },
   "Logging": {
     "LogLevel": {
@@ -76,28 +76,28 @@ Open `appsettings.json` file and adjust MySQL connection string:
 }
 ```
 
-**Note:** Replace `your_password` with your MySQL password.
+**Catatan:** Ganti `your_password` dengan password MySQL kamu.
 
 #### 4. **Install Dependencies**
-Restore all required packages:
+Restore semua package yang diperlukan:
 ```bash
 dotnet restore
 ```
 
-#### 5. **Run Database Migration**
+#### 5. **Menjalankan Migrasi Database**
 
-##### a. **Install Entity Framework Tools** (if not already installed)
+##### a. **Install Entity Framework Tools** (jika belum ada)
 ```bash
 dotnet tool install --global dotnet-ef
 ```
 
-##### b. **Create First Migration**
+##### b. **Membuat Migrasi Pertama**
 ```bash
 dotnet ef migrations add InitialCreate
 ```
 
 ##### c. **Update Database**
-Run migration to create tables in database:
+Jalankan migrasi untuk membuat tabel-tabel di database:
 ```bash
 dotnet ef database update
 ```
@@ -107,55 +107,55 @@ dotnet ef database update
 dotnet build
 ```
 
-#### 7. **Run Application**
+#### 7. **Menjalankan Aplikasi**
 ```bash
 dotnet run
 ```
 
-Application will run at:
+Aplikasi akan berjalan di:
 - **HTTP:** `http://localhost:5000`
 - **HTTPS:** `https://localhost:5001`
 
 ---
 
-## 🗃️ Database Structure
+## 🗃️ Struktur Database
 
-After successful migration, the following tables will be created:
+Setelah migrasi berhasil, tabel-tabel berikut akan dibuat:
 
-### Identity Tables (ASP.NET Core Identity)
-- `AspNetUsers` - User data
-- `AspNetRoles` - User roles
-- `AspNetUserRoles` - User and role relationships
-- `AspNetUserClaims` - User claims
-- `AspNetUserLogins` - External logins
-- `AspNetUserTokens` - User tokens
-- `AspNetRoleClaims` - Role claims
+### Tabel Identity (ASP.NET Core Identity)
+- `AspNetUsers` - Data user
+- `AspNetRoles` - Role user
+- `AspNetUserRoles` - Relasi user dan role
+- `AspNetUserClaims` - Claims user
+- `AspNetUserLogins` - Login eksternal
+- `AspNetUserTokens` - Token user
+- `AspNetRoleClaims` - Claims role
 
-### Custom Tables
-- `Categories` - Product category data
-- `Products` - Product data
+### Tabel Custom
+- `Categories` - Data kategori produk
+- `Products` - Data produk
 
 ---
 
-## 📋 Additional Migration Commands
+## 📋 Perintah Migration Tambahan
 
-### Create New Migration
-If there are model changes:
+### Membuat Migration Baru
+Jika ada perubahan model:
 ```bash
-dotnet ef migrations add MigrationName
+dotnet ef migrations add InitialCreate
 ```
 
-### Update Database to Specific Migration
+### Update Database ke Migration Tertentu
 ```bash
-dotnet ef database update MigrationName
+dotnet ef database update NamaMigration
 ```
 
 ### Rollback Migration
 ```bash
-dotnet ef database update PreviousMigrationName
+dotnet ef database update NamaMigrationSebelumnya
 ```
 
-### Remove Last Migration
+### Hapus Migration Terakhir
 ```bash
 dotnet ef migrations remove
 ```
@@ -168,9 +168,9 @@ dotnet ef database update
 
 ---
 
-## 🔐 Email Service Configuration (Optional)
+## 🔐 Konfigurasi Email Service (Opsional)
 
-If you want to activate email confirmation feature, add SMTP configuration in `appsettings.json`:
+Jika ingin mengaktifkan fitur email confirmation, tambahkan konfigurasi SMTP di `appsettings.json`:
 
 ```json
 {
@@ -189,15 +189,15 @@ If you want to activate email confirmation feature, add SMTP configuration in `a
 
 ## 🚨 Troubleshooting
 
-### Connection String Error
-If database connection error occurs:
-1. Make sure MySQL Server is running
-2. Check username, password, and database name
-3. Make sure MySQL port (default 3306) is not blocked
+### Error Connection String
+Jika terjadi error koneksi database:
+1. Pastikan MySQL Server berjalan
+2. Cek username, password, dan nama database
+3. Pastikan port MySQL (default 3306) tidak terblokir
 
-### Migration Error
+### Error Migration
 ```bash
-# If migration error occurs, try:
+# Jika ada error saat migration, coba:
 dotnet ef database drop --force
 dotnet ef migrations remove
 dotnet ef migrations add InitialCreate
@@ -205,7 +205,7 @@ dotnet ef database update
 ```
 
 ### Port Already in Use
-If port is already in use, change in `Properties/launchSettings.json`:
+Jika port sudah digunakan, ubah di `Properties/launchSettings.json`:
 ```json
 {
   "applicationUrl": "https://localhost:5002;http://localhost:5001"
@@ -216,28 +216,28 @@ If port is already in use, change in `Properties/launchSettings.json`:
 
 ## 📝 Default Login
 
-After setup completion, create first account through register page or seed admin data if available.
+Setelah setup selesai, buat akun pertama melalui halaman register atau seed data admin jika tersedia.
 
 ---
 
-## 🤝 Contributing
+## 🤝 Kontribusi
 
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Create Pull Request
-
----
-
-## 📄 License
-
-This project was created for Nawatech Junior Fullstack Developer technical test purposes.
+1. Fork repository
+2. Buat branch feature (`git checkout -b feature/AmazingFeature`)
+3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Buat Pull Request
 
 ---
 
-## 📞 Contact
+## 📄 Lisensi
 
-If you have questions or issues, please contact:
-- **Email:** fajarfauzian@example.com
+Project ini dibuat untuk keperluan technical test Nawatech Junior Fullstack Developer.
+
+---
+
+## 📞 Kontak
+
+Jika ada pertanyaan atau kendala, silakan hubungi:
+- **Email:** fajarfauzian53@gmail.com
 - **GitHub:** [fajarfauzian](https://github.com/fajarfauzian)

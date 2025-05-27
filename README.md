@@ -6,7 +6,7 @@ Proyek ini merupakan implementasi dari technical test **Nawatech Junior Fullstac
 ## 📸 Screenshots
 
 ### Halaman Utama
-![Login Page](/wwwroot/images/screenshots/home.png)
+![Halaman Utama](/wwwroot/images/home.png)
 
 ---
 

@@ -3,6 +3,11 @@
 ## 📝 Deskripsi
 Proyek ini merupakan implementasi dari technical test **Nawatech Junior Fullstack Developer**, dengan fitur utama **User Registration**, **Login**, dan **Manajemen Produk & Kategori** menggunakan **ASP.NET Core (.NET 6/7/8)** dan **Entity Framework Core**. Fitur opsional konfirmasi email juga tersedia.
 
+## 📸 Screenshots
+
+### Halaman Utama
+![Login Page](/wwwroot/images/screenshots/home.png)
+
 ---
 
 ## 🚀 Fitur Utama
@@ -113,8 +118,7 @@ dotnet run
 ```
 
 Aplikasi akan berjalan di:
-- **HTTP:** `http://localhost:5000`
-- **HTTPS:** `https://localhost:5001`
+- **HTTP:** `http://localhost:5264`
 
 ---
 

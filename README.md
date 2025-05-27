@@ -127,17 +127,20 @@ Aplikasi akan berjalan di:
 Setelah migrasi berhasil, tabel-tabel berikut akan dibuat:
 
 ### Tabel Identity (ASP.NET Core Identity)
-- `AspNetUsers` - Data user
-- `AspNetRoles` - Role user
-- `AspNetUserRoles` - Relasi user dan role
-- `AspNetUserClaims` - Claims user
-- `AspNetUserLogins` - Login eksternal
-- `AspNetUserTokens` - Token user
-- `AspNetRoleClaims` - Claims role
+- `AspNetUsers` - Menyimpan data pengguna (nama, email, password, dll).
+- `AspNetRoles` - Menyimpan data role (Admin, User, dsb).
+- `AspNetUserRoles` - Relasi antara user dan role.
+- `AspNetUserClaims` - Klaim tambahan milik user.
+- `AspNetRoleClaims` - Klaim tambahan milik role.
+- `AspNetUserLogins` - Informasi login eksternal (misal Google, Facebook).
+- `AspNetUserTokens` - Token yang digunakan user (misal untuk reset password).
 
 ### Tabel Custom
-- `Categories` - Data kategori produk
-- `Products` - Data produk
+- `ProductCategories` - Menyimpan data kategori produk (nama kategori, deskripsi, dll).
+- `Products` - Menyimpan data produk (nama produk, harga, stok, gambar, dll).
+
+### Tabel Migration (Entity Framework Core)
+- `__EFMigrationsHistory` - Menyimpan riwayat migrasi database EF Core.
 
 ---
 
@@ -212,7 +215,7 @@ dotnet ef database update
 Jika port sudah digunakan, ubah di `Properties/launchSettings.json`:
 ```json
 {
-  "applicationUrl": "https://localhost:5002;http://localhost:5001"
+  "applicationUrl": "https://localhost:7219;http://localhost:5264"
 }
 ```
 
@@ -221,22 +224,6 @@ Jika port sudah digunakan, ubah di `Properties/launchSettings.json`:
 ## 📝 Default Login
 
 Setelah setup selesai, buat akun pertama melalui halaman register atau seed data admin jika tersedia.
-
----
-
-## 🤝 Kontribusi
-
-1. Fork repository
-2. Buat branch feature (`git checkout -b feature/AmazingFeature`)
-3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
-4. Push ke branch (`git push origin feature/AmazingFeature`)
-5. Buat Pull Request
-
----
-
-## 📄 Lisensi
-
-Project ini dibuat untuk keperluan technical test Nawatech Junior Fullstack Developer.
 
 ---
 

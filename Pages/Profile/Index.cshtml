@@ -4,148 +4,159 @@
     ViewData["Title"] = "Profile";
 }
 
-<div class="container-fluid pt-3">
-
-    <!-- Main Content -->
+<div class="container-fluid pt-4">
     <div class="row g-4">
-        <!-- Profile Picture Section -->
+        <!-- Profile Picture Section with hover effects and improved styling -->
         <div class="col-lg-4 col-md-5">
-            <div class="card border-0 shadow-sm h-100">
+            <div class="card border-0 shadow h-100 profile-card">
                 <div class="card-body text-center p-4">
-                    <div class="position-relative d-inline-block mb-4">
+                    <div class="position-relative d-inline-block mb-3 profile-image-container">
                         @if (!string.IsNullOrEmpty(Model.ProfilePicture))
                         {
                             <img src="@Model.ProfilePicture" alt="Profile Picture" 
-                                 class="rounded-circle border border-3 border-light shadow" 
-                                 style="width: 150px; height: 150px; object-fit: cover;" />
+                                 class="rounded-circle border border-3 border-white shadow profile-image" 
+                                 id="profileImage" />
                         }
                         else
                         {
                             <img src="@Model.GravatarUrl" alt="Gravatar Profile" 
-                                 class="rounded-circle border border-3 border-light shadow" 
-                                 style="width: 150px; height: 150px; object-fit: cover;" />
+                                 class="rounded-circle border border-3 border-white shadow profile-image" 
+                                 id="profileImage" />
                         }
-                        <div class="position-absolute bottom-0 end-0">
-                            <span class="badge bg-primary rounded-pill p-2">
+                        <div class="position-absolute bottom-0 end-0 edit-profile-icon" id="uploadTrigger">
+                            <span class="badge bg-primary rounded-circle p-2">
                                 <i class="bi bi-camera-fill"></i>
                             </span>
                         </div>
                     </div>
                     
-                    <h4 class="fw-bold mb-1">@Model.Username</h4>
+                    <h4 class="fw-bold mb-2">@Model.Username</h4>
                     <p class="text-muted mb-3">@Model.Email</p>
                     
-                    <div class="d-grid gap-2 d-md-block">
+                    <div class="d-flex justify-content-center gap-2 mb-3">
                         <span class="badge bg-light text-dark px-3 py-2 rounded-pill">
                             <i class="bi bi-shield-check me-1"></i>
-                            Verified Account
+                            <span>Verified Account</span>
                         </span>
                     </div>
+                
+                    @if (!string.IsNullOrEmpty(Model.ProfilePicture))
+                    {
+                        <button type="button" class="btn btn-outline-danger mt-2 px-3" id="removeProfileBtn">
+                            <i class="bi bi-trash me-1"></i>Remove Picture
+                        </button>
+                    }
                 </div>
             </div>
         </div>
 
- 
-        <!-- Profile Form Section -->
+        <!-- Profile Form Section with improved styling and interactions -->
         <div class="col-lg-8 col-md-7">
-            <div class="card border-0 shadow-sm">
-                <div class="card-header bg-transparent border-0 pt-3 px-3">
-                    <h5 class="mb-0 fw-bold">
-                    <i class="bi bi-person-circle fs-3 text-primary"></i>
-                        Manage your account information and settings
+            <div class="card border-0 shadow">
+                <div class="card-header bg-transparent border-0 pt-4 px-4">
+                    <h5 class="mb-1 fw-bold">
+                        <i class="bi bi-person-circle text-primary me-2"></i>
+                        Manage Your Profile
                     </h5>
+                    <p class="text-muted mb-0">Update your personal information and profile settings</p>
                 </div>
                 <div class="card-body p-4">
-                    <form id="profile-form" method="post" enctype="multipart/form-data">
+                    <form method="post" id="profile-form" enctype="multipart/form-data">
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none"></div>
                         
-                        <!-- Account Information (Read-only) -->
-                        <div class="row mb-4">
+                        <!-- Account Information (Editable) -->
+                        <div class="row mb-3">
                             <div class="col-12">
                                 <h6 class="text-muted text-uppercase fw-bold mb-3 border-bottom pb-2">
                                     <i class="bi bi-info-circle me-2"></i>Account Information
                                 </h6>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label fw-semibold">
-                                    <i class="bi bi-person me-2 text-muted"></i>Username
+                                <label asp-for="Input.UserName" class="form-label fw-medium">
+                                    <i class="bi bi-person me-1 text-muted"></i>Username
                                 </label>
-                                <div class="input-group">
-                                    <input class="form-control bg-light" readonly value="@Model.Username" />
-                                    <span class="input-group-text bg-light border-start-0">
-                                        <i class="bi bi-lock text-muted"></i>
-                                    </span>
-                                </div>
+                                <input asp-for="Input.UserName" class="form-control" placeholder="Enter your username" />
+                                <span asp-validation-for="Input.UserName" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label fw-semibold">
-                                    <i class="bi bi-envelope me-2 text-muted"></i>Email Address
+                                <label asp-for="Input.Email" class="form-label fw-medium">
+                                    <i class="bi bi-envelope me-1 text-muted"></i>Email Address
                                 </label>
-                                <div class="input-group">
-                                    <input class="form-control bg-light" readonly value="@Model.Email" />
-                                    <span class="input-group-text bg-light border-start-0">
-                                        <i class="bi bi-lock text-muted"></i>
-                                    </span>
-                                </div>
+                                <input asp-for="Input.Email" class="form-control" placeholder="Enter your email" />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
                             </div>
                         </div>
-
+                        
                         <!-- Personal Information (Editable) -->
-                        <div class="row mb-4">
+                        <div class="row mb-3">
                             <div class="col-12">
                                 <h6 class="text-muted text-uppercase fw-bold mb-3 border-bottom pb-2">
                                     <i class="bi bi-person-lines-fill me-2"></i>Personal Information
                                 </h6>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label asp-for="Input.FirstName" class="form-label fw-semibold">
-                                    <i class="bi bi-person me-2 text-muted"></i>First Name
+                                <label asp-for="Input.FirstName" class="form-label fw-medium">
+                                    <i class="bi bi-person me-1 text-muted"></i>First Name
                                 </label>
-                                <input asp-for="Input.FirstName" class="form-control form-control-lg border-2" 
-                                       placeholder="Enter your first name" />
-                                <span asp-validation-for="Input.FirstName" class="text-danger small"></span>
+                                <input asp-for="Input.FirstName" class="form-control" placeholder="Enter your first name" />
+                                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label asp-for="Input.LastName" class="form-label fw-semibold">
-                                    <i class="bi bi-person me-2 text-muted"></i>Last Name
+                                <label asp-for="Input.LastName" class="form-label fw-medium">
+                                    <i class="bi bi-person me-1 text-muted"></i>Last Name
                                 </label>
-                                <input asp-for="Input.LastName" class="form-control form-control-lg border-2" 
-                                       placeholder="Enter your last name" />
-                                <span asp-validation-for="Input.LastName" class="text-danger small"></span>
+                                <input asp-for="Input.LastName" class="form-control" placeholder="Enter your last name" />
+                                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <!-- Password Change Section -->
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <h6 class="text-muted text-uppercase fw-bold mb-3 border-bottom pb-2">
+                                    <i class="bi bi-shield-lock me-2"></i>Change Password
+                                </h6>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Input.CurrentPassword" class="form-label fw-medium">
+                                    <i class="bi bi-key me-1 text-muted"></i>Current Password
+                                </label>
+                                <input asp-for="Input.CurrentPassword" class="form-control" placeholder="Enter current password" />
+                                <span asp-validation-for="Input.CurrentPassword" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Input.NewPassword" class="form-label fw-medium">
+                                    <i class="bi bi-key-fill me-1 text-muted"></i>New Password
+                                </label>
+                                <input asp-for="Input.NewPassword" class="form-control" placeholder="Enter new password" />
+                                <span asp-validation-for="Input.NewPassword" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Input.ConfirmPassword" class="form-label fw-medium">
+                                    <i class="bi bi-check-circle me-1 text-muted"></i>Confirm Password
+                                </label>
+                                <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Confirm new password" />
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                             </div>
                         </div>
 
-                        <!-- Profile Picture Upload -->
-                        <div class="row mb-4">
-                            <div class="col-12">
-                                <h6 class="text-muted text-uppercase fw-bold mb-3 border-bottom pb-2">
-                                    <i class="bi bi-image me-2"></i>Profile Picture
-                                </h6>
-                                <div class="mb-3">
-                                    <label asp-for="Input.ProfilePicture" class="form-label fw-semibold">
-                                        <i class="bi bi-cloud-upload me-2 text-muted"></i>Upload Custom Picture
-                                    </label>
-                                    <input asp-for="Input.ProfilePicture" type="file" 
-                                           class="form-control form-control-lg border-2" 
-                                           accept="image/*" />
-                                    <span asp-validation-for="Input.ProfilePicture" class="text-danger small"></span>
-                                    <div class="form-text mt-2">
-                                        <i class="bi bi-info-circle me-1"></i>
-                                        Upload a custom image (JPG, PNG, GIF - Max 5MB) or leave empty to use your Gravatar profile picture
-                                    </div>
-                                </div>
-                            </div>
+                        <!-- Hidden Profile Picture Upload -->
+                        <div class="d-none">
+                            <input asp-for="Input.ProfilePicture" type="file" 
+                                   id="profilePictureInput"
+                                   class="form-control" 
+                                   accept="image/*" />
                         </div>
 
                         <!-- Action Buttons -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 me-md-2">
-                                        <i class="bi bi-arrow-clockwise me-2"></i>Reset
+                                    <button type="button" class="btn btn-outline-secondary px-4 py-2" id="resetFormBtn">
+                                        <i class="bi bi-arrow-clockwise me-1"></i>Reset
                                     </button>
-                                    <button type="submit" class="btn btn-primary btn-lg px-4">
-                                        <i class="bi bi-check-circle me-2"></i>Save Changes
+                                    <button type="submit" class="btn btn-primary px-4 py-2" id="saveChangesBtn">
+                                        <i class="bi bi-check-circle me-1"></i>Save Changes
                                     </button>
                                 </div>
                             </div>
@@ -157,10 +168,10 @@
             <!-- Status Message -->
             @if (!string.IsNullOrEmpty(Model.StatusMessage))
             {
-                <div class="mt-4">
-                    <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
-                        <i class="bi bi-check-circle-fill me-2"></i>
-                        <strong>Success!</strong> @Model.StatusMessage
+                <div class="mt-3" id="statusAlert">
+                    <div class="alert alert-success alert-dismissible fade show shadow py-2" role="alert">
+                        <i class="bi bi-check-circle-fill me-1"></i>
+                        <span><strong>Success!</strong> @Model.StatusMessage</span>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 </div>
@@ -171,4 +182,6 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true" />
+    <script src="~/js/profile.js" asp-append-version="true"></script>
 }

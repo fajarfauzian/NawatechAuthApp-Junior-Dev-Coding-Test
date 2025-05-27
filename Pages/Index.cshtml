@@ -1,10 +1,96 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Welcome to Nawatech Auth App";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Hello World</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if (User.Identity?.IsAuthenticated == false)
+{
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold">Sistem Manajemen Produk Nawatech</h1>
+            <p class="lead">Efficiently manage your products and categories</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-box-seam me-2"></i>Manajemen Produk</h5>
+                        <p class="card-text">Buat, perbarui, dan hapus produk dengan mudah. Lacak detail produk termasuk nama, deskripsi, dan harga.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-diagram-3 me-2"></i>Category Organization</h5>
+                        <p class="card-text">Organize products into categories for better inventory management and tracking.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-shield-lock me-2"></i>Akses Aman</h5>
+                        <p class="card-text">Akses terlindungi ke data produk Anda dengan autentikasi dan manajemen pengguna yang aman.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <p class="lead">Mulai kelola produk Anda dengan sistem yang mudah digunakan</p>
+            <div class="mt-4">
+                <a href="/Identity/Account/Register" class="btn btn-primary me-2">Mulai</a>
+                <a href="/Identity/Account/Login" class="btn btn-outline-primary">Masuk</a>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold">Welcome Back, @User.Identity?.Name!</h1>
+            <p class="lead">Terima kasih telah menjadi bagian dari sistem kami</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-boxes me-2"></i>Product Management</h5>
+                        <p class="card-text">Manage your inventory and product details.</p>
+                        <a href="/Products" class="btn btn-outline-primary">Manage Products</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-diagram-2 me-2"></i>Kategori</h5>
+                        <p class="card-text">Atur dan kelola kategori produk Anda.</p>
+                        <a href="/Categories" class="btn btn-outline-primary">Kelola Kategori</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-person-badge me-2"></i>Profil</h5>
+                        <p class="card-text">Lihat dan perbarui informasi profil Anda.</p>
+                        <a href="/Identity/Account/Manage" class="btn btn-outline-primary">Kelola Profil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <p class="lead">Butuh bantuan? Hubungi tim support kami</p>
+            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index")" method="post">
+                <button type="submit" class="btn btn-danger">Keluar</button>
+            </form>
+        </div>
+    </div>
+}

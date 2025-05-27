@@ -27,11 +27,16 @@ namespace NawatechAuthApp.Pages.Products
 
         public async Task OnGetAsync()
         {
+            // Load products with their categories
             Products = await _context.Products
                 .Include(p => p.Category)
+                .Where(p => !p.IsDeleted)
                 .ToListAsync();
-                
+
+            // Load all categories for the filter dropdown
             Categories = await _context.ProductCategories
+                .Where(c => !c.IsDeleted)
+                .OrderBy(c => c.Name)
                 .ToListAsync();
         }
     }

@@ -43,7 +43,7 @@
                         
                         <!-- Price and Stock -->
                         <div class="mb-4">
-                            <h2 class="h4 text-primary fw-bold mb-2">@Model.Product.Price.ToString("C")</h2>
+                            <h2 class="h4 text-primary fw-bold mb-2">Rp @Model.Product.Price.ToString("N0")</h2>
                             <div class="d-flex align-items-center gap-2">
                                 <span class="badge bg-@(Model.Product.Stock > 0 ? "success" : "danger") px-3 py-2">
                                     @(Model.Product.Stock > 0 ? "In Stock" : "Out of Stock")

@@ -42,8 +42,8 @@ namespace NawatechAuthApp.Pages.Categories
                 return NotFound($"Unable to load user.");
             }
 
-            // Perbaikan: Jangan buat objek baru, gunakan yang sudah di-bind
             Category.CreatedById = user.Id;
+// Remove this line since UserId property doesn't exist in ProductCategory model
             Category.CreatedAt = DateTime.UtcNow;
 
             _context.ProductCategories.Add(Category);

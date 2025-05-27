@@ -6,7 +6,7 @@ Proyek ini merupakan implementasi dari technical test **Nawatech Junior Fullstac
 ## 📸 Screenshots
 
 ### Halaman Utama
-![Dashboard](https://raw.githubusercontent.com/fajarfauzian/NawatechAuthApp-Junior-Dev-Coding-Test/wwwroot/image/home.png)
+https://raw.githubusercontent.com/fajarfauzian/NawatechAuthApp-Junior-Dev-Coding-Test/main/wwwroot/image/home.png
 
 ---
 

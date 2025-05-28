@@ -26,7 +26,6 @@ namespace NawatechAuthApp.Pages.Categories
 
         public async Task OnGetAsync()
         {
-            // Load all active categories
             Categories = await _context.ProductCategories
                 .Where(c => !c.IsDeleted)
                 .OrderBy(c => c.Name)

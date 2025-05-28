@@ -101,7 +101,6 @@
 
 @section Scripts {
     <script>
-        // Initialize tooltips
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
         tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl, {
@@ -109,7 +108,6 @@
             })
         })
 
-        // Filter functionality
         function filterCategories() {
             const searchValue = document.getElementById('searchInput').value.toLowerCase();
 
@@ -119,7 +117,6 @@
 
                 let showRow = true;
 
-                // Search filter - check both name and description
                 if (searchValue && !name.includes(searchValue) && !description.includes(searchValue)) {
                     showRow = false;
                 }
@@ -128,7 +125,6 @@
             });
         }
 
-        // Add event listener for search input
         document.getElementById('searchInput').addEventListener('input', filterCategories);
     </script>
 }

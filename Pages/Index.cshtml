@@ -42,8 +42,8 @@
         <div class="text-center mt-5">
             <p class="lead">Mulai kelola produk Anda dengan sistem yang mudah digunakan</p>
             <div class="mt-4">
-                <a href="/Identity/Account/Register" class="btn btn-primary me-2">Mulai</a>
-                <a href="/Identity/Account/Login" class="btn btn-outline-primary">Masuk</a>
+                <a href="/Identity/Account/Register" class="btn me-2" style="background-color: #4A47EE; border-color: #4A47EE; color: white;">Mulai</a>
+                <a href="/Identity/Account/Login" class="btn" style="color: #4A47EE; border-color: #4A47EE;" onmouseover="this.style.backgroundColor='#4A47EE'; this.style.color='white';" onmouseout="this.style.backgroundColor=''; this.style.color='#4A47EE';">Masuk</a>
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@ else
                     <div class="card-body">
                         <h5 class="card-title"><i class="bi bi-boxes me-2"></i>Product Management</h5>
                         <p class="card-text">Manage your inventory and product details.</p>
-                        <a href="/Products" class="btn btn-outline-primary">Manage Products</a>
+                        <a href="/Products" class="btn" style="color: #4A47EE; border-color: #4A47EE;" onmouseover="this.style.backgroundColor='#4A47EE'; this.style.color='white';" onmouseout="this.style.backgroundColor=''; this.style.color='#4A47EE';">Manage Products</a>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@ else
                     <div class="card-body">
                         <h5 class="card-title"><i class="bi bi-diagram-2 me-2"></i>Kategori</h5>
                         <p class="card-text">Atur dan kelola kategori produk Anda.</p>
-                        <a href="/Categories" class="btn btn-outline-primary">Kelola Kategori</a>
+                        <a href="/Categories" class="btn" style="color: #4A47EE; border-color: #4A47EE;" onmouseover="this.style.backgroundColor='#4A47EE'; this.style.color='white';" onmouseout="this.style.backgroundColor=''; this.style.color='#4A47EE';">Kelola Kategori</a>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@ else
                     <div class="card-body">
                         <h5 class="card-title"><i class="bi bi-person-badge me-2"></i>Profil</h5>
                         <p class="card-text">Lihat dan perbarui informasi profil Anda.</p>
-                        <a href="/Identity/Account/Manage" class="btn btn-outline-primary">Kelola Profil</a>
+                        <a href="/Identity/Account/Manage" class="btn" style="color: #4A47EE; border-color: #4A47EE;" onmouseover="this.style.backgroundColor='#4A47EE'; this.style.color='white';" onmouseout="this.style.backgroundColor=''; this.style.color='#4A47EE';">Kelola Profil</a>
                     </div>
                 </div>
             </div>
@@ -89,7 +89,7 @@ else
         <div class="text-center mt-5">
             <p class="lead">Butuh bantuan? Hubungi tim support kami</p>
             <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index")" method="post">
-                <button type="submit" class="btn btn-danger">Keluar</button>
+                <button type="submit" class="btn" style="background-color: #4A47EE; border-color: #4A47EE; color: white;">Keluar</button>
             </form>
         </div>
     </div>

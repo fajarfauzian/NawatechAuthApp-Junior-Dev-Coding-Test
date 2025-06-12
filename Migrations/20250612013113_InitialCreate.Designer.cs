@@ -12,7 +12,7 @@ using NawatechAuthApp.Data;
 namespace NawatechAuthApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250528020311_InitialCreate")]
+    [Migration("20250612013113_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

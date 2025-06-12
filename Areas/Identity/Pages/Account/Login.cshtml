@@ -91,7 +91,7 @@
                                             <button type="submit" class="btn btn-outline-secondary rounded-pill px-3 py-1 border-2 small" 
                                                     name="provider" value="@provider.Name" 
                                                     title="Log in using your @provider.DisplayName account">
-                                                <i class="bi bi-@provider.DisplayName.ToLower() me-2"></i>@provider.DisplayName
+                                                <i class="bi bi-@(provider?.DisplayName?.ToLower() ?? "unknown") me-2"></i>@(provider?.DisplayName ?? "unknown")
                                             </button>
                                         }
                                     </div>

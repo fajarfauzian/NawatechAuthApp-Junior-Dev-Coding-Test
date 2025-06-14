@@ -28,7 +28,6 @@ namespace NawatechAuthApp.Services
         
         public static string GetDefaultGravatarUrl(int size = 200, string defaultImage = "identicon")
         {
-            // Generate a random hash for consistent default image
             var randomEmail = $"default{DateTime.Now.Ticks}@example.com";
             return GetGravatarUrl(randomEmail, size, defaultImage);
         }

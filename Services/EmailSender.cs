@@ -53,7 +53,6 @@ namespace NawatechAuthApp.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Failed to send email to {email}");
-                // For development, don't throw exception
             }
         }
     }
